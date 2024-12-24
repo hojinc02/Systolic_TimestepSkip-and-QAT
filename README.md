@@ -10,8 +10,8 @@ For each output channel in the convolution layer, prune the weights at specific 
 
 ## Results
 | Type           | WS Test Accuracy | OS Test Accuracy |
-| -------------- | ---------------- | ---------------- |
-| Original       | 90.98%                              |
+| -------------- | ---------------: | ---------------: |
+| Original       | 90.98%          ||                  |
 | Pruned         | 90.77%           | 89.32%           |
 | Pruned + QAT   | 90.79%           | 88.28%           |
 | Error Increase |  0.19%           |  2.70%           |
