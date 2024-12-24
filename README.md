@@ -7,3 +7,11 @@ For each output channel in the convolution layer, prune the weights at specific 
 
 ## Output Stationary Architecture Pruning
 ![os_prune](images/os_prune.png)
+
+## Results
+| Type           | WS Test Accuracy | OS Test Accuracy |
+| -------------- | ---------------- | ---------------- |
+| Original       | 90.98%                              |
+| Pruned         | 90.77%           | 89.32%           |
+| Pruned + QAT   | 90.79%           | 88.28%           |
+| Error Increase |  0.19%           |  2.70%           |
