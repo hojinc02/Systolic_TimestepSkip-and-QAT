@@ -1,5 +1,5 @@
 # Time-step Skipping Pruning and 4-bit Quantization for Systolic Arrays
-PyTorch implementation of "timestep skipping" structured pruning of convolution layers, with 4-bit quantized-aware-training applied later. 
+PyTorch implementation of structured pruning for convolutional layers using "timestep skipping," followed by 4-bit quantization-aware training.
 
 ## Weight Stationary Architecture Pruning
 ![ws_prune](images/ws_prune.png)
