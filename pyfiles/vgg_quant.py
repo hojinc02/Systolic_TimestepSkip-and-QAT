@@ -1,5 +1,6 @@
 import torch.nn as nn
-from models import *
+from pyfiles import *
+
 
 cfg = {
     'VGG11': [64, 'M', 128, 'M', 256, 256, 'M', 512, 512, 'M', 512, 512, 'M'],
