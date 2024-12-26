@@ -18,7 +18,7 @@ The results were obtained using a **14M** parameter VGG16 model, which achieved 
 | Error Delta    | **-0.19%**       | **-2.70%**       |
 
 ## Benefits
-Pruning reduces the processing requirements and model size by approximately a factor of $$1/(1−S)$$, where $$0 \leq S \gt 1$$ represents sparsity. OS pruning enables finer-grained sparsity by allowing each input channel to prune any number of $$k_{ij}$$ positions, offering greater flexibility compared to WS pruning.
+Pruning reduces the processing requirements and model size by approximately a factor of $$1/(1−S)$$, where $$0 \leq S \lt 1$$ represents sparsity. OS pruning enables finer-grained sparsity by allowing each input channel to prune any number of $$k_{ij}$$ positions, offering greater flexibility compared to WS pruning.
 
 ## Further Research
 Fine-grained WS pruning could be achieved by allowing a variable number of output channels' psum blocks to be computed at each timestep. However, this approach is incompatible with the parallel accumulation performed by the special function units in the current simple systolic array design. Future research should focus on addressing the challenge of fast accumulation to enable finer-grained WS pruning.
