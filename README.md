@@ -12,6 +12,7 @@ For each output channel in the convolution layer, prune the weights at specific 
 The results were obtained using a 14M parameter VGG16 model, which achieved 90.98% accuracy on CIFAR-10 when trained from scratch with the AdamW optimizer. The table below summarizes the test accuracy after pruning 80% of the convolutional layer weights, applying 4-bit quantization-aware training (QAT), and the resulting error delta compared to the original full-precision model. Pruning was performed iteratively during training using a scheduler to optimize the weight reduction process.
 | Type           | WS Test Accuracy | OS Test Accuracy |
 | -------------- | ---------------: | ---------------: |
+| Full           | *90.98%*         | *90.98%*         |
 | Pruned         | 90.77%           | 89.32%           |
 | Pruned + QAT   | 90.79%           | 88.28%           |
-| Error Delta    | -0.19%           | -2.70%           |
+| Error Delta    | **-0.19%**       | **-2.70%**       |
