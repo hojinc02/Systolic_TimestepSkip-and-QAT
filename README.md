@@ -6,7 +6,7 @@ PyTorch implementation of structured pruning for convolutional layers using "tim
 For each output channel in a convolution layer, we prune weights at specific $$k_{ij}$$​ indices using the $$L_n$$-norm, ensuring the same number of $$k_{ij}$$ are pruned per output channel. These $$k_{ij}$$​​ indices correspond to the flattened positions within the weight kernel, derived from spatial positions $$k_i$$​ and $$k_j$$​. For a pruning sparsity ratio $$S$$, and a weight kernel of dimensions $$l$$ (length) and $$w$$ (width), $$\lfloor S \cdot l \cdot w \rceil$$ indices are pruned per output channel. At each timestep, the unpruned $$k_{ij}$$​ index weights are loaded onto the systolic array for processing for each output channel. The partial sum (psum) can either be accumulated during array processing and summed later or summed in parallel with array processing. 
 
 ## Output Stationary Architecture Pruning
-![os_prune](images/os_prune.png)
+![os_prune](images/os_prune_.png)
 In a convolution layer, $$L_n$$-norm across output channels is used to prune $$\lfloor S \cdot l \cdot w \cdot I \cdot O\rceil$$ weights, where $$I$$ and $$O$$ are the input and output channel counts. Only unpruned weights are processed in parallel with the inputs. Input formatting ensures the sliding window for the convolution kernel includes only the unpruned weight positions per input channel. $$n_{ij}'$$ denotes the output pixel index. 
 
 ## Results
