@@ -7,7 +7,7 @@ For each output channel in a convolution layer, prune weights at specific $$k_{i
 
 ## Output Stationary Architecture Pruning
 ![os_prune](images/os_prune.png)
-In a convolution layer, $$L_n$$-norm across output channels is used to prune $$\lfloor P \cdot l \cdot w \cdot I \cdot O\rceil$$ weights per $$k_{ij}$$ index for each input channel, where $$I$$ and $$O$$ are the input and output channel counts. Only unpruned weights are processed in paralleled with the inputs. Input formatting ensures the sliding window for the convolution kernel includes only the unpruned weight positions per input channel. $$n_{ij}'$$ denotes the output pixel index. 
+In a convolution layer, $$L_n$$-norm across output channels is used to prune $$\lfloor P \cdot l \cdot w \cdot I \cdot O\rceil$$ weights, where $$I$$ and $$O$$ are the input and output channel counts. Only unpruned weights are processed in parallel with the inputs. Input formatting ensures the sliding window for the convolution kernel includes only the unpruned weight positions per input channel. $$n_{ij}'$$ denotes the output pixel index. 
 
 ## Results
 The results were obtained using a small **14M** parameter VGG16 model, which achieved 90.98% accuracy on CIFAR-10 when trained from scratch with the AdamW optimizer. The table below summarizes the test accuracy after pruning **80%** of the convolutional layer weights, applying 4-bit quantization-aware training (QAT), and the resulting error delta compared to the original full-precision model. Pruning was performed iteratively during training using a scheduler to optimize the weight reduction process.
