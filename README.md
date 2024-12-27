@@ -3,10 +3,11 @@ PyTorch implementation of structured pruning for convolutional layers using "tim
 
 ## Weight Stationary Architecture Pruning
 ![ws_prune](images/ws_prune.png)
-For each output channel in the convolution layer, prune the weights at specific $$k_{ij}$$​ indices. These $$k_{ij}$$​​ indices represent the flattened positions within the weight kernel, derived from the spatial positions $$k_i$$​ and $$k_j$$​. For a pruning sparsity ratio $$P$$, and a weight kernel of dimensions $$l$$ (length) and $$w$$ (width), $$\lfloor P \cdot l \cdot w \rceil$$ indices are pruned per output channel. At each timestep, the unpruned $$k_{ij}$$​ index weights are loaded onto the systolic array for processing for each output channel.
+For each output channel in the convolution layer, prune the weights at specific $$k_{ij}$$​ indices using ln-norm. We prune the same number of $$k_{ij} indices per output channel. These $$k_{ij}$$​​ indices represent the flattened positions within the weight kernel, derived from the spatial positions $$k_i$$​ and $$k_j$$​. For a pruning sparsity ratio $$P$$, and a weight kernel of dimensions $$l$$ (length) and $$w$$ (width), $$\lfloor P \cdot l \cdot w \rceil$$ indices are pruned per output channel. At each timestep, the unpruned $$k_{ij}$$​ index weights are loaded onto the systolic array for processing for each output channel.
 
 ## Output Stationary Architecture Pruning
 ![os_prune](images/os_prune.png)
+For a single convolution layer, per $$k_{ij}$$ index at each input channel, the ln-norm across the output channel is used to prune $$\lfloor P \cdot l \cdot w \cdot I \cdot O\rfloor$$ weights where $$I$$ and $$O$$ are the input channel and output channel counts respectively. Only the pruned weights are pushed through the array in parallel to the inputs. The input is formatted such that the sliding window respective to the convolution kernel includes only the positions of the pruned weights per input channel. $$n_{ij}'$ represents the output pixel index. 
 
 ## Results
 The results were obtained using a small **14M** parameter VGG16 model, which achieved 90.98% accuracy on CIFAR-10 when trained from scratch with the AdamW optimizer. The table below summarizes the test accuracy after pruning **80%** of the convolutional layer weights, applying 4-bit quantization-aware training (QAT), and the resulting error delta compared to the original full-precision model. Pruning was performed iteratively during training using a scheduler to optimize the weight reduction process.
